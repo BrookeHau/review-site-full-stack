@@ -13,19 +13,21 @@ public class ClassTest {
 		String check = category.getCategory();
 		assertThat(check, is("Yoga"));
 	}
-	
+
 	@Test
 	public void setUpReview() {
-		Review review = new Review("Name", new Category("category"), new Tag("tag"));
+		Review review = new Review("Name", "description", new Category("category"), new Tag("tag"));
 		String check = review.getReview();
+		String check2 = review.getDescription();
 		assertThat(check, is("Name"));
+		assertThat(check2, is("description"));
 	}
-	
+
 	@Test
 	public void setUpTag() {
 		Tag tag = new Tag("Tag");
 		String check = tag.getTag();
 		assertThat(check, is("Tag"));
-		
+
 	}
 }

@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -12,8 +14,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import junit.framework.Assert;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -58,6 +58,25 @@ public class ReviewSiteMappingTest {
 	}
 
 	@Test
+	public void saveLoadReview() {
+		Tag tag = new Tag("Tag");
+		tag = tagRepo.save(tag);
+		Tag tag2 = new Tag("tag2");
+		tag2 = tagRepo.save(tag2);
+		Category category = new Category("cat");
+		category = catRepo.save(category);
+		Review review = new Review("Review", "description", category, tag, tag2);
+		review = reviewRepo.save(review);
+		long reviewId = review.getId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		review = reviewRepo.findOne(reviewId);
+		assertThat(review.getReview(), is("Review"));
+	}
+
+	@Test
 	public void saveAndLoadTagsInReviews() {
 		Tag tag = new Tag("Tag");
 		tag = tagRepo.save(tag);
@@ -65,7 +84,7 @@ public class ReviewSiteMappingTest {
 		tag2 = tagRepo.save(tag2);
 		Category category = new Category("cat");
 		category = catRepo.save(category);
-		Review review = new Review("Review", category, tag, tag2);
+		Review review = new Review("Review", "description", category, tag, tag2);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -77,12 +96,31 @@ public class ReviewSiteMappingTest {
 	}
 
 	@Test
-	public void testCategoryToReviewRelationship() {
+	public void callCategoryInReview() {
+		Tag tag = new Tag("Tag");
+		tag = tagRepo.save(tag);
+		Tag tag2 = new Tag("tag2");
+		tag2 = tagRepo.save(tag2);
+		Category category = new Category("cat");
+		category = catRepo.save(category);
+		Review review = new Review("Review", "description", category, tag, tag2);
+		review = reviewRepo.save(review);
+		long reviewId = review.getId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		review = reviewRepo.findOne(reviewId);
+		assertThat(review.getCategory().getCategory(), is("cat"));
+	}
+
+	@Test
+	public void callCategoryWithinReview() {
 		Category category = new Category("Cat Name");
 		category = catRepo.save(category);
 		Tag tag = new Tag("tag");
 		tag = tagRepo.save(tag);
-		Review review = new Review("Review", category, tag);
+		Review review = new Review("Review", "description", category, tag);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -92,6 +130,70 @@ public class ReviewSiteMappingTest {
 		review = reviewRepo.findOne(reviewId);
 		assertThat(review.getCategory(), is(category));
 
+	}
+
+	@Test
+	public void categoryShouldHaveMultipleReview() {
+		Category category = new Category("Cat Name");
+		category = catRepo.save(category);
+		Tag tag = new Tag("tag");
+		tag = tagRepo.save(tag);
+		Review review = new Review("review", "description", category, tag);
+		review = reviewRepo.save(review);
+		Review review2 = new Review("review2", "description", category, tag);
+		review2 = reviewRepo.save(review2);
+		Review review3 = new Review("review3", "description", category, tag);
+		review3 = reviewRepo.save(review3);
+		long categoryId = category.getId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		category = catRepo.findOne(categoryId);
+		assertThat(category.getReviews(), containsInAnyOrder(review, review2, review3));
+
+	}
+	
+//	@Test
+//	public void testReviewAndCategory() {
+//		Category category = new Category("Cat Name");
+//		category = catRepo.save(category);
+//		Tag tag = new Tag("tag");
+//		tag = tagRepo.save(tag);
+//		Review review = new Review("review", "description", category, tag);
+//		review = reviewRepo.save(review);
+//		Review review2 = new Review("review2", "description", category, tag);
+//		review2 = reviewRepo.save(review2);
+//		Review review3 = new Review("review3", "description", category, tag);
+//		review3 = reviewRepo.save(review3);
+//		long categoryId = category.getId();
+//
+//		entityManager.flush();
+//		entityManager.clear();
+//
+//		category = catRepo.findOne(categoryId);
+//		Collection<Review> reviewsForCategory = reviewRepo.findByCategoriesContains(categoryId);
+//		assertThat(reviewsForCategory, containsInAnyOrder(review, review2, review3));
+
+//	}
+
+	@Test
+	public void callTagWithinReview() {
+		Category category = new Category("Cat Name");
+		category = catRepo.save(category);
+		Tag tag = new Tag("tag");
+		tag = tagRepo.save(tag);
+		Tag tag2 = new Tag("tag2");
+		tag2 = tagRepo.save(tag2);
+		Review review = new Review("review", "description", category, tag, tag2);
+		review = reviewRepo.save(review);
+		long reviewId = review.getId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		review = reviewRepo.findOne(reviewId);
+		assertThat(review.getTags(), contains(tag, tag2));
 	}
 
 }
