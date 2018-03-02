@@ -29,7 +29,7 @@ public class ReviewPopulator implements CommandLineRunner {
 		category1 = catRepo.save(category4);
 		Tag tag1 = new Tag("high cost");
 		tag1 = tagRepo.save(tag1);
-		Review review = new Review("Yoga1", "Great time", category1, tag1);
+		Review review = new Review("Yoga1", "Great time", category1,  tag1);
 		review = reviewRepo.save(review);
 		Review review2 = new Review("Yoga2", "excellent", category1, tag1);
 		review2 = reviewRepo.save(review2);

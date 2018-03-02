@@ -29,7 +29,7 @@ public class ReviewController {
 	public String getACategory(@RequestParam Long id, Model model) {
 	Category category = catRepo.findOne(id);
 	model.addAttribute("category", category);
-	model.addAttribute("reviews", reviewRepo.findByCategoriesContains(category));
+	model.addAttribute("reviews", reviewRepo.findByCategory(category));
 	return "singleCategoryView";
 	}
 

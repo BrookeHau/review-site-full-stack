@@ -35,8 +35,8 @@ public class Review {
 
 	public Review(String review, String description, Category category, Tag... tags) {
 		this.review = review;
-		this.description = description;
 		this.category = category;
+		this.description = description;
 		this.tags = new HashSet<>(asList(tags));
 	}
 

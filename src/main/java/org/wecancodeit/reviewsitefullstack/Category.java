@@ -22,9 +22,8 @@ public class Category {
 	private long id;
 	private String category;
 
-	public Category(String category, Review... reviews) {
+	public Category(String category) {
 		this.category = category;
-		this.reviews = new HashSet<>(asList(reviews));
 	}
 
 	public String getCategory() {

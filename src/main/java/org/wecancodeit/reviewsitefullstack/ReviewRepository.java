@@ -1,15 +1,11 @@
 package org.wecancodeit.reviewsitefullstack;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ReviewRepository extends CrudRepository<Review, Long>{
-
-//	List<Review> findByName(String name);
-//	
-//	Collection<Review> findByCategoriesContains(Category category);
+public interface ReviewRepository extends CrudRepository<Review, Long> {
+	public Collection<Review> findByCategoryId(long categoryId);
+	public Collection<Review> findByCategory(Category category);
+	public Collection<Review> findByTagsContains(Tag tag);
 }
-
-
