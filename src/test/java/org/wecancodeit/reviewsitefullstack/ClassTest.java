@@ -16,7 +16,7 @@ public class ClassTest {
 	
 	@Test
 	public void setUpReview() {
-		Review review = new Review("Name");
+		Review review = new Review("Name", new Category("category"), new Tag("tag"));
 		String check = review.getReview();
 		assertThat(check, is("Name"));
 	}
