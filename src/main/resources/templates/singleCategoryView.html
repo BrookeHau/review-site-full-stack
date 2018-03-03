@@ -4,9 +4,11 @@
 <title>Review List</title>
 </head>
 <body>
-<h1>List of Review</h1>
+<h1 th:text="'List of ' + ${category.category} + ' Reviews:'"></h1>
 <ul th:each="review : ${reviews}">
-<li th:text="${review.review}"></li>
+<li><a th:href="@{/review(id=${review.id})}" 
+th:text="${review.review}"></a></li>
 </ul>
+<p><a href="categories.html">Back to Home</a></p>
 </body>
 </html>

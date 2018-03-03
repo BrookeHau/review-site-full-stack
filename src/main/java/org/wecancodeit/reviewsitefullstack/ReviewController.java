@@ -32,5 +32,11 @@ public class ReviewController {
 	model.addAttribute("reviews", reviewRepo.findByCategory(category));
 	return "singleCategoryView";
 	}
+	
+	@RequestMapping ("/review")
+	public String getAReview(@RequestParam Long id, Model model) {
+		model.addAttribute("reviews", reviewRepo.findOne(id));
+		return "reviewModel";
+	}
 
 }

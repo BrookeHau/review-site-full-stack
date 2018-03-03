@@ -47,6 +47,10 @@ public class Review {
 	public long getId() {
 		return id;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
 
 	public Collection<Tag> getTags() {
 		return tags;
@@ -72,8 +76,5 @@ public class Review {
 		return id == ((Review) obj).id;
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
 }
