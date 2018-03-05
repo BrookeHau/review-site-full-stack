@@ -24,3 +24,7 @@ p a:hover {
 li a:hover {
 	color: red;
 }
+
+.list {
+	border: 1px solid black;
+}

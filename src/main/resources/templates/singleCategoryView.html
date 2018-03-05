@@ -6,10 +6,12 @@
 </head>
 <body>
 <h1 th:text="'List of ' + ${category.category} + ' Reviews:'"></h1>
+<main class="list">
 <ul th:each="review : ${reviews}">
 <li><a th:href="@{/review(id=${review.id})}" 
 th:text="${review.review}"></a></li>
 </ul>
+</main>
 <p><a href="categories.html">Back to Home</a></p>
 </body>
 </html>

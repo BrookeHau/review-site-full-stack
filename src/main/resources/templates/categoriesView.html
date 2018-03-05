@@ -6,9 +6,11 @@
 </head>
 <body>
 <h1>Review Categories</h1>
+<main class="list">
 <ul th:each= "category : ${categories}">
 <li><a th:href="@{/category(id=${category.id})}"
 th:text="${category.category}"></a></li>
 </ul>
+</main>
 </body>
 </html>
