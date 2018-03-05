@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<link rel="stylesheet" href="./css/style.css" />
+<title>Tags Page</title>
+</head>
+<body>
+	<h1>Tags Page</h1>
+		<h3>List of All Tags</h3>
+		<ul>
+		<li th:text="${tag.review}"></li>
+		</ul>
+		
+<p><a th:href="@{category(id=${review.category.id})}" th:text="'Return to ' + ${review.category.category} + ' Category'"></a></p>
+<p><a href="categories.html">Back to Home</a></p>
+</body>
+</html>

@@ -51,7 +51,7 @@ public class Review {
 	public long getId() {
 		return id;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -59,10 +59,11 @@ public class Review {
 	public String getImage() {
 		return image;
 	}
-	
+
 	public String getUrl() {
 		return websiteUrl;
 	}
+
 	public Collection<Tag> getTags() {
 		return tags;
 	}
@@ -86,6 +87,5 @@ public class Review {
 		}
 		return id == ((Review) obj).id;
 	}
-
 
 }

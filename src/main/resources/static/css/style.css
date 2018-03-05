@@ -1,0 +1,26 @@
+*{
+	background-color: #f4f4f4;
+	font-family: Calibri Light; 
+	margin: 25px; 
+	border-spacing: 10px
+}
+
+img{
+	height: 350px;
+	width: auto;
+}
+
+h1{
+	text-align: center;
+}
+
+h2{
+	font-weight: bold;
+}
+
+p a:hover {
+	color: red;
+}
+li a:hover {
+	color: red;
+}

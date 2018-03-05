@@ -14,9 +14,9 @@ public class Tag {
 	@GeneratedValue
 	private long id;
 	private String tagWord;
-	
+
 	public Tag() {
-		
+
 	}
 
 	public Tag(String tagWord) {
@@ -26,19 +26,19 @@ public class Tag {
 	public String getTagWord() {
 		return tagWord;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
-	@ManyToMany (mappedBy="tags")
+
+	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
-	
+
 	@Override
 	public int hashCode() {
-		return((Long) id).hashCode();
+		return ((Long) id).hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,7 +47,7 @@ public class Tag {
 		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		return id == ((Tag) obj).id;	
+		return id == ((Tag) obj).id;
 	}
 
 }

@@ -39,4 +39,16 @@ public class ReviewController {
 		return "reviewModel";
 	}
 
+	@RequestMapping("/tags")
+	public String showAllTags(@RequestParam Long id, Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return "tagsView";
+	}
+
+	@RequestMapping("/tag")
+	public String showOneTag(@RequestParam Long id, Model model) {
+		model.addAttribute("tag", tagRepo.findOne(id));
+		return "tagView";
+	}
+
 }

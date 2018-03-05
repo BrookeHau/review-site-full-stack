@@ -5,7 +5,7 @@
 <title>Categories</title>
 </head>
 <body>
-<h1>Review Categories</h1>
+<h1 th:text="${tag.tagWord} + ' Tag'" ></h1>
 <ul th:each= "category : ${categories}">
 <li><a th:href="@{/category(id=${category.id})}"
 th:text="${category.category}"></a></li>
