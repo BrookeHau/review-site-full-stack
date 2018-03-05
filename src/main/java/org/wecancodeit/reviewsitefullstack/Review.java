@@ -19,6 +19,8 @@ public class Review {
 	@GeneratedValue
 	private long id;
 	private String review;
+	private String image;
+	private String websiteUrl;
 
 	@Lob
 	private String description;
@@ -33,8 +35,10 @@ public class Review {
 
 	}
 
-	public Review(String review, String description, Category category, Tag... tags) {
+	public Review(String review, String description, String image, String websiteUrl, Category category, Tag... tags) {
 		this.review = review;
+		this.image = image;
+		this.websiteUrl = websiteUrl;
 		this.category = category;
 		this.description = description;
 		this.tags = new HashSet<>(asList(tags));
@@ -52,6 +56,13 @@ public class Review {
 		return description;
 	}
 
+	public String getImage() {
+		return image;
+	}
+	
+	public String getUrl() {
+		return websiteUrl;
+	}
 	public Collection<Tag> getTags() {
 		return tags;
 	}

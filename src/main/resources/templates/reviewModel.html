@@ -5,10 +5,13 @@
 </head>
 <body th:each="review : ${reviews}">
 <h1 th:text="${review.review} + ' Review'"></h1>
+<img th:src="${review.image}"></img>
+<h2>Description:</h2>
 <ul>
 <li th:text="${review.description}"></li>
-<li th:text="'Tags: ' + ${review.tags}"></li>
 </ul>
+<p><a th:href="${review.Url}">Visit their Site</a></p>
+<p th:each="tag : ${review.tags}" th:text="'Tags: ' + ${tag.tagWord}"></p>
 <p><a href="categories.html">Back to Home</a></p>
 </body>
 </html>

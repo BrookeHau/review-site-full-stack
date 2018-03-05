@@ -13,18 +13,18 @@ public class Tag {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String tag;
+	private String tagWord;
 	
 	public Tag() {
 		
 	}
 
-	public Tag(String tag) {
-		this.tag = tag;
+	public Tag(String tagWord) {
+		this.tagWord = tagWord;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getTagWord() {
+		return tagWord;
 	}
 	
 	public long getId() {

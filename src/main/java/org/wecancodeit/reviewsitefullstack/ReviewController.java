@@ -24,16 +24,16 @@ public class ReviewController {
 		model.addAttribute("categories", catRepo.findAll());
 		return "categoriesView";
 	}
-	
-	@RequestMapping ("/category")
+
+	@RequestMapping("/category")
 	public String getACategory(@RequestParam Long id, Model model) {
-	Category category = catRepo.findOne(id);
-	model.addAttribute("category", category);
-	model.addAttribute("reviews", reviewRepo.findByCategory(category));
-	return "singleCategoryView";
+		Category category = catRepo.findOne(id);
+		model.addAttribute("category", category);
+		model.addAttribute("reviews", reviewRepo.findByCategory(category));
+		return "singleCategoryView";
 	}
-	
-	@RequestMapping ("/review")
+
+	@RequestMapping("/review")
 	public String getAReview(@RequestParam Long id, Model model) {
 		model.addAttribute("reviews", reviewRepo.findOne(id));
 		return "reviewModel";
