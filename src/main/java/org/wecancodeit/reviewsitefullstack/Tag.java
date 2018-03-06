@@ -30,10 +30,19 @@ public class Tag {
 	public long getId() {
 		return id;
 	}
+	
+	public Collection<Review> getReviews(){
+		return reviews;
+	}
 
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
 
+	@Override 
+	public String toString() {
+		return tagWord;
+	}
+	
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();

@@ -5,8 +5,18 @@
 <title>Review</title>
 </head>
 <body th:each="review : ${reviews}">
+<div id="container">
+<header>
 <h1 th:text="${review.review} + ' Review'"></h1>
-<img th:src="${review.image}"></img>
+<nav>
+<ul>
+<li><a href="categories.html">Home</a></li>
+<li><a th:href="@{category(id=${review.category.id})}" th:text="'Return to ' + ${review.category.category} + ' Category'"></a></li>
+</ul>
+</nav>
+</header>
+<main>
+<center><img th:src="${review.image}"></img></center>
 <h2>Description:</h2>
 <ul>
 <li th:text="${review.description}"></li>
@@ -20,7 +30,7 @@
 <span th:each="tag: ${review.tags}">
 <a href="tagView.html" th:href="@{/tag(id=${tag.id})}" th:text="${tag.tagWord}"></a>
 </span>
-<center><p><a th:href="@{category(id=${review.category.id})}" th:text="'Return to ' + ${review.category.category} + ' Category'"></a></p></center>
-<center><p><a href="categories.html">Back to Home</a></p></center>
+</main>
+</div>
 </body>
 </html>

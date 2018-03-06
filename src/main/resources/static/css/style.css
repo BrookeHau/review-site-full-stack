@@ -1,8 +1,30 @@
-*{
+html{
 	background-color: #f4f4f4;
-	font-family: Calibri Light; 
-	margin: 25px; 
-	border-spacing: 10px
+	font-family: Arial; 
+	margin: 15px; 
+	border-spacing: 5px
+}
+
+#container{
+	display: grid;
+	grid-template-rows: 110px auto;
+	grid-gap: 2px;
+}
+
+header{
+	grid-row: 1/2;
+	background-color: #778899;
+}
+nav ul{
+	display: flex;
+	justify-content: flex-start;
+}
+nav ul li{
+	list-style-type:none;
+	padding: 5px;
+}
+main{
+	grid-row: -2/-1;
 }
 
 img{
@@ -18,13 +40,19 @@ h2{
 	font-weight: bold;
 }
 
-p a:hover {
+ul li a:hover {
 	color: red;
 }
-li a:hover {
+nav a:hover {
 	color: red;
 }
 
-.list {
-	border: 1px solid black;
+nav ul li a{
+	color:white;
+	text-decoration:none;
+}
+
+nav a{
+	color:white;
+	text-decoration:none;
 }

@@ -5,12 +5,16 @@
 <title>Categories</title>
 </head>
 <body>
+<div id= "container">
+<header>
 <h1>Review Categories</h1>
+</header>
 <main class="list">
 <ul th:each= "category : ${categories}">
 <li><a th:href="@{/category(id=${category.id})}"
 th:text="${category.category}"></a></li>
 </ul>
 </main>
+</div>
 </body>
 </html>

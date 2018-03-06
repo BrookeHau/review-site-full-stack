@@ -40,7 +40,7 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/tags")
-	public String showAllTags(@RequestParam Long id, Model model) {
+	public String showAllTags(Model model) {
 		model.addAttribute("tags", tagRepo.findAll());
 		return "tagsView";
 	}

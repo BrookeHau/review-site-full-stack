@@ -5,10 +5,19 @@
 <title>Categories</title>
 </head>
 <body>
+<header>
 <h1 th:text="${tag.tagWord} + ' Tag'" ></h1>
-<ul th:each= "category : ${categories}">
-<li><a th:href="@{/category(id=${category.id})}"
-th:text="${category.category}"></a></li>
+<nav>
+<ul>
+<li><a href="categories.html">Home</a></li>
 </ul>
+</nav>
+</header>
+<main>
+<ul th:each= "tag : ${tag.reviews}">
+<li><a th:href="@{/review(id=${tag.id})}"
+th:text="${tag.review}"></a></li>
+</ul>
+</main>
 </body>
 </html>

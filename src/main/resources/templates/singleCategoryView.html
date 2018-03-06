@@ -5,13 +5,17 @@
 <title>Review List</title>
 </head>
 <body>
-<h1 th:text="'List of ' + ${category.category} + ' Reviews:'"></h1>
+<div id= "container">
+<header>
+<h1 th:text="${category.category} + ' Reviews:'"></h1>
+<nav><a href="categories.html">Home</a></nav>
+</header>
 <main class="list">
 <ul th:each="review : ${reviews}">
 <li><a th:href="@{/review(id=${review.id})}" 
 th:text="${review.review}"></a></li>
 </ul>
 </main>
-<p><a href="categories.html">Back to Home</a></p>
+</div>
 </body>
 </html>
