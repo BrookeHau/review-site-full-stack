@@ -10,8 +10,8 @@
 <h1 th:text="${review.review} + ' Review'"></h1>
 <nav>
 <ul>
-<li><a href="categories.html">Home</a></li>
-<li><a th:href="@{category(id=${review.category.id})}" th:text="'Return to ' + ${review.category.category} + ' Category'"></a></li>
+<li class = "home"><a href="categories.html">Home</a></li>
+<li class = "cateogryhome"><a th:href="@{category(id=${review.category.id})}" th:text="'Return to ' + ${review.category.category} + ' Category'"></a></li>
 </ul>
 </nav>
 </header>
@@ -21,7 +21,7 @@
 <ul>
 <li th:text="${review.description}"></li>
 </ul>
-<h2>Tags:</h2>
+<h2>Tagsz:</h2>
 <ul th:each="tag : ${review.tags}">
 <li th:text="${tag.tagWord}"></li>
 </ul>

@@ -14,14 +14,28 @@ html{
 header{
 	grid-row: 1/2;
 	background-color: #778899;
+	display: grid;
+	grid-template-rows: 50px 60px;
 }
+nav{ 
+	grid-row:-2/-1;
+	align-self: center;
+	justify-self: flex-start;
+	padding: 5px;
+}
+h1{
+	text-align: center;
+	grid-row: 1/2;
+}
+
 nav ul{
 	display: flex;
-	justify-content: flex-start;
 }
 nav ul li{
 	list-style-type:none;
-	padding: 5px;
+	justify-content: flex-start;
+	padding: 7px;
+	
 }
 main{
 	grid-row: -2/-1;
@@ -32,9 +46,6 @@ img{
 	width: auto;
 }
 
-h1{
-	text-align: center;
-}
 
 h2{
 	font-weight: bold;

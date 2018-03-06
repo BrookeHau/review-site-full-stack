@@ -8,7 +8,11 @@
 <div id= "container">
 <header>
 <h1 th:text="${category.category} + ' Reviews:'"></h1>
-<nav><a href="categories.html">Home</a></nav>
+<nav>
+<ul>
+<li class = "home"><a href="categories.html">Home</a></li>
+</ul>
+</nav>
 </header>
 <main class="list">
 <ul th:each="review : ${reviews}">
