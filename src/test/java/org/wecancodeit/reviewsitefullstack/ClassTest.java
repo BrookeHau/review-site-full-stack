@@ -3,6 +3,8 @@ package org.wecancodeit.reviewsitefullstack;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 public class ClassTest {
@@ -33,4 +35,18 @@ public class ClassTest {
 		String check = tag.getTagWord();
 		assertThat(check, is("Tag"));
 	}
+	
+	@Test
+	public void setUpComments() {
+		Date date = new Date();
+		Review review = new Review("Name", "description", "image", "URL", new Category("category"), new Tag("tag"));
+		Comment comment = new Comment("userName", "comment", date, review);
+		String check = comment.getuserName();
+		String check2 = comment.getCommentText();
+		Date date2 = comment.getDate();
+		assertThat(check, is("userName"));
+		assertThat(check2, is("comment"));
+	}
+	
+	
 }

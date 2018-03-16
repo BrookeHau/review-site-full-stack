@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -30,6 +31,9 @@ public class ReviewSiteMappingTest {
 
 	@Resource
 	private ReviewRepository reviewRepo;
+
+	@Resource
+	private CommentRepository commentRepo;
 
 	@Test
 	public void saveAndLoadCategory() {
@@ -194,6 +198,27 @@ public class ReviewSiteMappingTest {
 
 		review = reviewRepo.findOne(reviewId);
 		assertThat(review.getTags(), contains(tag, tag2));
+	}
+
+	@Test
+	public void getReviewFromComment() {
+		Date date = new Date();
+		Category category = new Category("Cat Name");
+		category = catRepo.save(category);
+		Tag tag = new Tag("tag");
+		tag = tagRepo.save(tag);
+		Review review = new Review("review", "image", "URL", "description", category, tag);
+		review = reviewRepo.save(review);
+		Comment comment = new Comment("userName", "text", date, review);
+		comment = commentRepo.save(comment);
+		long commentId = comment.getCommentId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		comment = commentRepo.findOne(commentId);
+		assertThat(comment.getCommentReview(), is(review));
+
 	}
 
 }

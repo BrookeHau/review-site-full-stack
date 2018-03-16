@@ -1,5 +1,7 @@
 package org.wecancodeit.reviewsitefullstack;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +18,9 @@ public class ReviewPopulator implements CommandLineRunner {
 
 	@Resource
 	ReviewRepository reviewRepo;
+	
+	@Resource
+	CommentRepository commentRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,5 +62,8 @@ public class ReviewPopulator implements CommandLineRunner {
 				"Corus is another la gree studio located in Cleveland, Ohio. The atmosphere is very fun and upbeat.  What I love about Corus is they incorporate ab moves throughout the entire workout, not just in the beginning or end.",
 				"./corus.jpg", "http://www.corus45.com/", category3, tag1, tag2);
 		review6 = reviewRepo.save(review6);
+		Date date = new Date();
+		Comment comment1 = new Comment("BHau", "testing", date,  review);
+		comment1 = commentRepo.save(comment1);
 	}
 }
