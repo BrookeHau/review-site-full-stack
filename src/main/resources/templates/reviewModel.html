@@ -38,6 +38,19 @@
 		<span th:each="tag: ${review.tags}"> <a href="tagView.html"
 			th:href="@{/tag(id=${tag.id})}" th:text="${tag.tagWord}"></a>
 		</span>
+		<h3>Add a Tag</h3>
+		<form method="POST">
+			<div>
+				<label>Name of Tag: </label> <input type="text" name="tagWord" />
+			</div>
+			<div>
+				<input name="reviewId" type="hidden" th:value="${review.id}" />
+			</div>
+			<div>
+				<button type="submit" th:formaction="@{/add-tag}">Add Tag</button>
+			</div>
+		</form>
+		<h3>Comment Section</h3>
 		<form method="POST">
 			<div>
 				<label>Leave comment: </label> <input type="text" name="commentText" />

@@ -65,4 +65,14 @@ public class ReviewController {
 		comment = commentRepo.save(comment);
 		return "redirect:/review?id=" + reviewId;
 	}
+	
+	@RequestMapping("/add-tag")
+	public String addTag(String tagWord, Long reviewId)
+	{
+		Tag tag = new Tag(tagWord);
+		tag = tagRepo.save(tag);
+		Review review = reviewRepo.findOne(reviewId);
+		review = reviewRepo.save(review);
+		return "redirect:/review?id=" + reviewId;
+	}
 }
