@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Review {
@@ -31,6 +32,13 @@ public class Review {
 	@ManyToMany
 	private Collection<Tag> tags;
 
+	@OneToMany (mappedBy="review")
+	private Collection<Comment> comments;
+	
+	public Collection<Comment> getComments(){
+		return comments;
+	}
+	
 	public Review() {
 
 	}

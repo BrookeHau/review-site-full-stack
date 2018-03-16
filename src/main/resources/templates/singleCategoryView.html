@@ -5,22 +5,22 @@
 <title>Review List</title>
 </head>
 <body>
-<div id= "container">
-<header>
-<h1 th:text="${category.category} + ' Reviews:'"></h1>
-<nav>
-<ul>
-<li class = "home"><a href="categories.html">Home</a></li>
-</ul>
-</nav>
-</header>
-<main class="list">
-<ul th:each="review : ${reviews}">
-<li><a th:href="@{/review(id=${review.id})}" 
-th:text="${review.review}"></a></li>
-</ul>
-</main>
-</div>
-<script src="./js/reviewsiteapp.js"></script>
+	<div id="container">
+		<header>
+			<h1 th:text="${category.category} + ' Reviews:'"></h1>
+			<nav>
+				<ul>
+					<li class="home"><a href="categories.html">Home</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main class="list">
+		<ul th:each="review : ${reviews}">
+			<li><a th:href="@{/review(id=${review.id})}"
+				th:text="${review.review}"></a></li>
+		</ul>
+		</main>
+	</div>
+	<script src="./js/reviewsiteapp.js"></script>
 </body>
 </html>
