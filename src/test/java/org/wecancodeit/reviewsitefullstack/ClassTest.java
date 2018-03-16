@@ -41,7 +41,7 @@ public class ClassTest {
 		Date date = new Date();
 		Review review = new Review("Name", "description", "image", "URL", new Category("category"), new Tag("tag"));
 		Comment comment = new Comment("userName", "comment", date, review);
-		String check = comment.getuserName();
+		String check = comment.getUserName();
 		String check2 = comment.getCommentText();
 		Date date2 = comment.getDate();
 		assertThat(check, is("userName"));

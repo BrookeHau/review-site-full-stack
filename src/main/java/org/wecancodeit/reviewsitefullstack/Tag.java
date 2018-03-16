@@ -1,6 +1,9 @@
 package org.wecancodeit.reviewsitefullstack;
 
+import static java.util.Arrays.asList;
+
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +22,9 @@ public class Tag {
 
 	}
 
-	public Tag(String tagWord) {
+	public Tag(String tagWord, Review...reviews) {
 		this.tagWord = tagWord;
+		this.reviews = new HashSet<>(asList(reviews));
 	}
 
 	public String getTagWord() {
