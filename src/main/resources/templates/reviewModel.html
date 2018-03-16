@@ -43,20 +43,18 @@
 				<label>Leave comment: </label> <input type="text" name="commentText" />
 			</div>
 			<div>
-				<label>Enter your User</label> <input type="text"
-					name="userName" />
+				<label>Enter your User</label> <input type="text" name="userName" />
 			</div>
 			<div>
-				<input name="reviewId" type="hidden" th:value="${review.id}"/>
+				<input name="reviewId" type="hidden" th:value="${review.id}" />
 			</div>
 			<div>
-				<button type="submit"
-					th:formaction="@{/add-comment}">Enter</button>
+				<button type="submit" th:formaction="@{/add-comment}">Enter</button>
 			</div>
 		</form>
 		<ul th:each="comment: ${review.comments}">
-			<li th:text="'Comment: ' + ${comment.commentText} + ' | Date: '+ ${comment.date}"></li>
-			<li th:text= "${comment.userName}"></li>
+			<li
+				th:text="'Comment: ' + ${comment.commentText} + ' | Date: '+ ${comment.date} + ' | UserName: ' + ${comment.userName}"></li>
 		</ul>
 		</main>
 	</div>

@@ -38,7 +38,7 @@ public class Comment {
 	public long getCommentId() {
 		return id;
 	}
-	public String getuserName() {
+	public String getUserName() {
 		return userName;
 	}
 
