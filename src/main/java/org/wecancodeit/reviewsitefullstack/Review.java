@@ -97,4 +97,10 @@ public class Review {
 		return id == ((Review) obj).id;
 	}
 
+
+
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
 }

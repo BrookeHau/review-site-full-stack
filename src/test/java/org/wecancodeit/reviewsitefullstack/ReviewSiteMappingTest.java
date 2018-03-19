@@ -69,7 +69,7 @@ public class ReviewSiteMappingTest {
 		tag2 = tagRepo.save(tag2);
 		Category category = new Category("cat");
 		category = catRepo.save(category);
-		Review review = new Review("Review", "description", "image", "URL", category, tag, tag2);
+		Review review = new Review("Review", "description", "image", "URL", category);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -81,25 +81,6 @@ public class ReviewSiteMappingTest {
 	}
 
 	@Test
-	public void saveAndLoadTagsInReviews() {
-		Tag tag = new Tag("Tag");
-		tag = tagRepo.save(tag);
-		Tag tag2 = new Tag("tag2");
-		tag2 = tagRepo.save(tag2);
-		Category category = new Category("cat");
-		category = catRepo.save(category);
-		Review review = new Review("Review", "description", "image", "URL", category, tag, tag2);
-		review = reviewRepo.save(review);
-		long reviewId = review.getId();
-
-		entityManager.flush();
-		entityManager.clear();
-
-		review = reviewRepo.findOne(reviewId);
-		assertThat(review.getTags(), containsInAnyOrder(tag, tag2));
-	}
-
-	@Test
 	public void callCategoryInReview() {
 		Tag tag = new Tag("Tag");
 		tag = tagRepo.save(tag);
@@ -107,7 +88,7 @@ public class ReviewSiteMappingTest {
 		tag2 = tagRepo.save(tag2);
 		Category category = new Category("cat");
 		category = catRepo.save(category);
-		Review review = new Review("Review", "description", "image", "URL", category, tag, tag2);
+		Review review = new Review("Review", "description", "image", "URL", category);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -124,7 +105,7 @@ public class ReviewSiteMappingTest {
 		category = catRepo.save(category);
 		Tag tag = new Tag("tag");
 		tag = tagRepo.save(tag);
-		Review review = new Review("Review", "description", "image", "URL", category, tag);
+		Review review = new Review("Review", "description", "image", "URL", category);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -142,11 +123,11 @@ public class ReviewSiteMappingTest {
 		category = catRepo.save(category);
 		Tag tag = new Tag("tag");
 		tag = tagRepo.save(tag);
-		Review review = new Review("review", "image", "description", "URL", category, tag);
+		Review review = new Review("review", "image", "description", "URL", category);
 		review = reviewRepo.save(review);
-		Review review2 = new Review("review2", "image", "description", "URL", category, tag);
+		Review review2 = new Review("review2", "image", "description", "URL", category);
 		review2 = reviewRepo.save(review2);
-		Review review3 = new Review("review3", "image", "description", "URL", category, tag);
+		Review review3 = new Review("review3", "image", "description", "URL", category);
 		review3 = reviewRepo.save(review3);
 		long categoryId = category.getId();
 
@@ -164,11 +145,11 @@ public class ReviewSiteMappingTest {
 		category = catRepo.save(category);
 		Tag tag = new Tag("tag");
 		tag = tagRepo.save(tag);
-		Review review = new Review("review", "image", "URL", "description", category, tag);
+		Review review = new Review("review", "image", "URL", "description", category);
 		review = reviewRepo.save(review);
-		Review review2 = new Review("review2", "image", "URL", "description", category, tag);
+		Review review2 = new Review("review2", "image", "URL", "description", category);
 		review2 = reviewRepo.save(review2);
-		Review review3 = new Review("review3", "image", "URL", "description", category, tag);
+		Review review3 = new Review("review3", "image", "URL", "description", category);
 		review3 = reviewRepo.save(review3);
 		long categoryId = category.getId();
 
@@ -181,25 +162,7 @@ public class ReviewSiteMappingTest {
 
 	}
 
-	@Test
-	public void callTagWithinReview() {
-		Category category = new Category("Cat Name");
-		category = catRepo.save(category);
-		Tag tag = new Tag("tag");
-		tag = tagRepo.save(tag);
-		Tag tag2 = new Tag("tag2");
-		tag2 = tagRepo.save(tag2);
-		Review review = new Review("review", "image", "URL", "description", category, tag, tag2);
-		review = reviewRepo.save(review);
-		long reviewId = review.getId();
-
-		entityManager.flush();
-		entityManager.clear();
-
-		review = reviewRepo.findOne(reviewId);
-		assertThat(review.getTags(), contains(tag, tag2));
-	}
-
+	
 	@Test
 	public void getReviewFromComment() {
 		Date date = new Date();
@@ -207,7 +170,7 @@ public class ReviewSiteMappingTest {
 		category = catRepo.save(category);
 		Tag tag = new Tag("tag");
 		tag = tagRepo.save(tag);
-		Review review = new Review("review", "image", "URL", "description", category, tag);
+		Review review = new Review("review", "image", "URL", "description", category);
 		review = reviewRepo.save(review);
 		Comment comment = new Comment("userName", "text", date, review);
 		comment = commentRepo.save(comment);

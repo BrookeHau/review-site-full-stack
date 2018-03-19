@@ -22,7 +22,7 @@ public class Tag {
 
 	}
 
-	public Tag(String tagWord, Review...reviews) {
+	public Tag(String tagWord, Review... reviews) {
 		this.tagWord = tagWord;
 		this.reviews = new HashSet<>(asList(reviews));
 	}
@@ -34,19 +34,19 @@ public class Tag {
 	public long getId() {
 		return id;
 	}
-	
-	public Collection<Review> getReviews(){
+
+	public Collection<Review> getReviews() {
 		return reviews;
 	}
 
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
 
-	@Override 
+	@Override
 	public String toString() {
 		return tagWord;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
@@ -61,6 +61,10 @@ public class Tag {
 			return false;
 		}
 		return id == ((Tag) obj).id;
+	}
+
+	public void addReview(Review review) {
+		reviews.add(review);
 	}
 
 }

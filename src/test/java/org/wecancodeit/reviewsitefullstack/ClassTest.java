@@ -18,7 +18,7 @@ public class ClassTest {
 
 	@Test
 	public void setUpReview() {
-		Review review = new Review("Name", "description", "image", "URL", new Category("category"), new Tag("tag"));
+		Review review = new Review("Name", "description", "image", "URL", new Category("category"));
 		String check = review.getReview();
 		String check2 = review.getDescription();
 		String image = review.getImage();
@@ -39,7 +39,7 @@ public class ClassTest {
 	@Test
 	public void setUpComments() {
 		Date date = new Date();
-		Review review = new Review("Name", "description", "image", "URL", new Category("category"), new Tag("tag"));
+		Review review = new Review("Name", "description", "image", "URL", new Category("category"));
 		Comment comment = new Comment("userName", "comment", date, review);
 		String check = comment.getUserName();
 		String check2 = comment.getCommentText();

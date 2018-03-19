@@ -20,7 +20,7 @@ public class ReviewController {
 
 	@Resource
 	ReviewRepository reviewRepo;
-	
+
 	@Resource
 	CommentRepository commentRepo;
 
@@ -41,6 +41,7 @@ public class ReviewController {
 	@RequestMapping("/review")
 	public String getAReview(@RequestParam Long id, Model model) {
 		model.addAttribute("reviews", reviewRepo.findOne(id));
+		model.addAttribute("tags", tagRepo.findAll());
 		return "reviewModel";
 	}
 
@@ -55,23 +56,29 @@ public class ReviewController {
 		model.addAttribute("tag", tagRepo.findOne(id));
 		return "tagView";
 	}
-	
+
 	@RequestMapping("/add-comment")
-	public String addComment(String commentText, String userName, Long reviewId)
-	{
+	public String addComment(String commentText, String userName, Long reviewId) {
 		Date date = new Date();
 		Review review = reviewRepo.findOne(reviewId);
 		Comment comment = new Comment(userName, commentText, date, review);
 		comment = commentRepo.save(comment);
 		return "redirect:/review?id=" + reviewId;
 	}
-	
+
 	@RequestMapping("/add-tag")
-	public String addTag(String tagWord, Long reviewId)
-	{
-		Review review = reviewRepo.findOne(reviewId);
-		Tag tag = new Tag(tagWord, review);
-		tag = tagRepo.save(tag);
+	public String addTag(String tagWord, Long reviewId) {
+		Review newReview = reviewRepo.findOne(reviewId);
+		if (newReview != null && tagWord != null) {
+			Tag existingTag = tagRepo.findByTagWord(tagWord);
+			if (existingTag == null) {
+				Tag newTag = new Tag(tagWord, newReview);
+				newTag = tagRepo.save(newTag);
+				newReview.addTag(newTag);
+				reviewRepo.save(newReview);
+			}
+		}
+
 		return "redirect:/review?id=" + reviewId;
 	}
 }
