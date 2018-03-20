@@ -1,57 +1,21 @@
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 
 xhr.onreadystatechange = function() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
-
-		const res = xhr.responseText;
-
-		const tagList = document.getElementByClass('tagList');
-
-		tagList.innerHTML = res;
-
+		const res = JSON.parse(xhr.responseText);
+		const tagList = document.querySelector('.tagList')
+		
+		for (tag in res){
+			const tagList = document.createElement('div')
+			const tagLink = document.createElement('a')
+			tagLink.setAttribute('href', '/templates/tagView.html');
+			tagLink.innerText = res[tag].name
+			tagList.appendChild(tagLink)
+		}
 	}
 }
 
-function clearField() {
-
-	document.newTagForm.reset();
-
-}
-
-const form = document.getElementById('newTagForm');
-
-
-
-	const reviewTagId = document.getElementById('reviewTagId').value;
-	const descriptionId = document.getElementById('descriptionId').value;
-
-	xhr.open('POST', 'http://localhost:8080/add-tag', true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("reviewId=" + reviewTagId + "&tagDescription=" + descriptionId);
-
+	xhr.open('GET', 'http://localhost:8080/review?id=1', true);
+	xhr.send();
 	
 	
-
-})
-//const newTagFiller = document.getElementById('descriptionId');
-//newTagFiller.style.placeholder="this";
-
-// creating ajax call to delete tag by method used created in Controller
-const removeForm = document.getElementById('deleteTagForm');
-removeForm.addEventListener('submit', function(event) {
-	event.preventDefault();
-	
-	const tagDeleteBox = document.getElementById('removeTagDescriptionId').value;
-	if (tagDeleteBox == "") {
-		alert("Please fill in tag description!")
-		return false;
-	}
-	
-	const removeTagId = document.getElementById('removeTagId').value;
-	const removeTagDescriptionId = document.getElementById('removeTagDescriptionId').value;
-	
-	xhr.open('POST', 'http://localhost:8080/remove-tag', true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("reviewId=" + removeTagId + "&tagDescription="	+ removeTagDescriptionId);
-
-})

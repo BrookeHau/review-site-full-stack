@@ -2,6 +2,7 @@ package org.wecancodeit.reviewsitefullstack;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,14 +15,33 @@ public class ReviewRestController {
 	@Resource
 	TagRepository tagRepo;
 
-	
-	/*
-	 * @RequestMapping("/add-tag") public String addTag(String tagWord, Long
-	 * reviewId) { Review review = reviewRepo.findOne(reviewId);
-	 * if(!(tagRepo.findByTagWord(tagWord)==null)) { Tag tag =
-	 * tagRepo.findByTagWord(tagWord); tag.addReview(review); return
-	 * "redirect:/review?id=" + reviewId; } Tag tag = new Tag(tagWord); tag =
-	 * tagRepo.save(tag); tag.addReview(review); tagRepo.save(tag); return
-	 * "redirect:/review?id=" + reviewId; }
-	 */
+	@RequestMapping("/review/{reviewId}/addtag/{tagWord}")
+	public Tag addTagtoReview(@PathVariable Long reviewId, @PathVariable String tagWord) {
+		Review newReview = reviewRepo.findOne(reviewId);
+		if (newReview != null && tagWord != null) {
+			Tag existingTag = tagRepo.findByTagWord(tagWord);
+			if (existingTag == null) {
+				Tag newTag = new Tag(tagWord, newReview);
+				newTag = tagRepo.save(newTag);
+				newReview.addTag(newTag);
+				reviewRepo.save(newReview);
+			}
+		}
+
+		return null;
+	}
+
+	/*@RequestMapping("/review/{reviewId}/tag/{tagId}/deletetag")
+	public String deleteTagFromReview(@PathVariable Long reviewId, @PathVariable Long tagId) {
+		Review review = reviewRepo.findOne(reviewId);
+		Tag tag = tagRepo.findOne(tagId);
+		review.removeTag(tag);
+		reviewRepo.save(review);
+
+		if (tag.getReviews().size() == 0) {
+			tagRepo.delete(tag);
+		}
+
+		return null;
+	}*/
 }

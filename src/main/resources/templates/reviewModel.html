@@ -25,12 +25,12 @@
 		<ul>
 			<li th:text="${review.description}"></li>
 		</ul>
-		<div class="tagList">
+		<!-- <div class="tagList">
 		<h2>Tags:</h2>
 		<ul th:each="tag : ${tags}">
 			<li th:text="${tag.tagWord}"></li>
 		</ul>
-		</div>
+		</div> -->
 		<center>
 			<button>
 				<a th:href="${review.Url}">Visit their Site</a>
@@ -38,7 +38,7 @@
 		</center>
 		<div class="tagList">
 		<h3>Tag Link</h3>
-		<span th:each="tag: ${tags}"> <a href="tagView.html"
+		<span th:each="tag: ${review.tags}"> <a href="tagView.html"
 			th:href="@{/tag(id=${tag.id})}" th:text="${tag.tagWord}"></a>
 		</span>
 		</div>
@@ -53,6 +53,19 @@
 				</div>
 				<div>
 					<button type="submit" th:formaction="@{/add-tag}">Submit</button>
+				</div>
+			</form>
+		</div>
+		<div class="newTagForm">
+			<form id="deleteTagForm" method="DELETE">
+				<div>
+					<label>Name of Tag to Delete: </label> <input type="text" name="deleteTag" id="tagDescription" />
+				</div>
+				<div>
+					<input name="reviewId" type="hidden" th:value="${review.id}" />
+				</div>
+				<div>
+					<button type="submit" th:formaction="@{/delete-tag}">Delete</button>
 				</div>
 			</form>
 		</div>

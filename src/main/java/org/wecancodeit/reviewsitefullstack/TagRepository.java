@@ -6,4 +6,5 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 
 	Tag findByTagWord(String tagWord);
 
+
 }

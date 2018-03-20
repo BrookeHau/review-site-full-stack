@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Review {
 
@@ -26,6 +28,7 @@ public class Review {
 	@Lob
 	private String description;
 
+	@JsonIgnore
 	@ManyToOne
 	private Category category;
 
@@ -38,7 +41,6 @@ public class Review {
 	public Collection<Comment> getComments() {
 		return comments;
 	}
-	
 
 	public Review() {
 
@@ -97,10 +99,13 @@ public class Review {
 		return id == ((Review) obj).id;
 	}
 
-
-
 	public void addTag(Tag tag) {
 		tags.add(tag);
+	}
+
+	public void deleteTag(Tag deleteTag) {
+		tags.remove(deleteTag);
+
 	}
 
 }

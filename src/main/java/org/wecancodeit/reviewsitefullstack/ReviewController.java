@@ -41,7 +41,7 @@ public class ReviewController {
 	@RequestMapping("/review")
 	public String getAReview(@RequestParam Long id, Model model) {
 		model.addAttribute("reviews", reviewRepo.findOne(id));
-		model.addAttribute("tags", tagRepo.findAll());
+	/*	model.addAttribute("tags", tagRepo.findAll());*/
 		return "reviewModel";
 	}
 
@@ -79,6 +79,16 @@ public class ReviewController {
 			}
 		}
 
+		return "redirect:/review?id=" + reviewId;
+	}
+	
+	@RequestMapping("/delete-tag")
+	public String deleteTag(String deleteTag, Long reviewId) {
+		Review newReview = reviewRepo.findOne(reviewId);
+		Tag tag = tagRepo.findByTagWord(deleteTag);
+		newReview.deleteTag(tag);
+		reviewRepo.save(newReview);
+		
 		return "redirect:/review?id=" + reviewId;
 	}
 }
